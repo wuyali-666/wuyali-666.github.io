@@ -1,0 +1,421 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>python-异常处理 | 哈哈哈</title><meta name="description" content="python标准异常   异常名称 描述        BaseException 所有异常的基类   SystemExit 解释器请求退出   KeyboardInterrupt 用户中断执行(通常是输入^C)   Exception 常规错误的基类   StopIteration 迭代器没有更多的值   GeneratorExit 生成器(generator)发生异常来通知退出   Stand"><meta name="keywords" content="demo1,demo2"><meta name="author" content="yali"><meta name="copyright" content="yali"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="../../../../img/favicon.png"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://fonts.googleapis.com" crossorigin="crossorigin"/><link rel="dns-prefetch" href="https://fonts.googleapis.com"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="dns-prefetch" href="//busuanzi.ibruce.info"/><meta name="twitter:card" content="summary"><meta name="twitter:title" content="python-异常处理"><meta name="twitter:description" content="python标准异常   异常名称 描述        BaseException 所有异常的基类   SystemExit 解释器请求退出   KeyboardInterrupt 用户中断执行(通常是输入^C)   Exception 常规错误的基类   StopIteration 迭代器没有更多的值   GeneratorExit 生成器(generator)发生异常来通知退出   Stand"><meta name="twitter:image" content="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=3668607579,886597139&amp;fm=26&amp;gp=0.jpg"><meta property="og:type" content="article"><meta property="og:title" content="python-异常处理"><meta property="og:url" content="http://yoursite.com/2020/06/01/python-%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/"><meta property="og:site_name" content="哈哈哈"><meta property="og:description" content="python标准异常   异常名称 描述        BaseException 所有异常的基类   SystemExit 解释器请求退出   KeyboardInterrupt 用户中断执行(通常是输入^C)   Exception 常规错误的基类   StopIteration 迭代器没有更多的值   GeneratorExit 生成器(generator)发生异常来通知退出   Stand"><meta property="og:image" content="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=3668607579,886597139&amp;fm=26&amp;gp=0.jpg"><meta property="article:published_time" content="2020-06-01T02:04:45.000Z"><meta property="article:modified_time" content="2020-06-02T08:40:52.115Z"><script src="../../../../https:/cdn.jsdelivr.net/npm/js-cookie/dist/js.cookie.min.js"></script><script>var autoChangeMode = '1'
+var t = Cookies.get("theme")
+if (autoChangeMode == '1'){
+  var isDarkMode = window.matchMedia("(prefers-color-scheme: dark)").matches
+  var isLightMode = window.matchMedia("(prefers-color-scheme: light)").matches
+  var isNotSpecified = window.matchMedia("(prefers-color-scheme: no-preference)").matches
+  var hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+  if (t === undefined){
+    if (isLightMode) activateLightMode()
+    else if (isDarkMode) activateDarkMode()
+    else if (isNotSpecified || hasNoSupport){
+      console.log('You specified no preference for a color scheme or your browser does not support it. I Schedule dark mode during night time.')
+      var now = new Date()
+      var hour = now.getHours()
+      var isNight = hour < 6 || hour >= 18
+      isNight ? activateDarkMode() : activateLightMode()
+  }
+  } else if (t == 'light') activateLightMode()
+  else activateDarkMode()
+
+} else if (autoChangeMode == '2'){
+  now = new Date();
+  hour = now.getHours();
+  isNight = hour < 6 || hour >= 18
+  if(t === undefined) isNight? activateDarkMode() : activateLightMode()
+  else if (t === 'light') activateLightMode()
+  else activateDarkMode() 
+} else {
+  if ( t == 'dark' ) activateDarkMode()
+  else if ( t == 'light') activateLightMode()
+}
+
+function activateDarkMode(){
+  document.documentElement.setAttribute('data-theme', 'dark')
+  if (document.querySelector('meta[name="theme-color"]') !== null){
+    document.querySelector('meta[name="theme-color"]').setAttribute('content','#000')
+  }
+}
+function activateLightMode(){
+  document.documentElement.setAttribute('data-theme', 'light')
+  if (document.querySelector('meta[name="theme-color"]') !== null){
+  document.querySelector('meta[name="theme-color"]').setAttribute('content','#fff')
+  }
+}</script><link rel="stylesheet" href="../../../../css/index.css"><link rel="stylesheet" href="../../../../https:/cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css"><link rel="stylesheet" href="../../../../https:/cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><link rel="canonical" href="http://yoursite.com/2020/06/01/python-%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/"><link rel="next" title="python 访问文件" href="../../../../http:/yoursite.com/2020/06/01/python-%E8%AE%BF%E9%97%AE%E6%96%87%E4%BB%B6/"><link rel="stylesheet" href="../../../../https:/fonts.googleapis.com/css?family=Titillium+Web"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: {"defaultEncoding":2,"translateDelay":0,"cookieDomain":"https://xxx/","msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  bookmark: {
+    message_prev: '按',
+    message_next: '键将本页加入书签'
+  },
+  runtime_unit: '天',
+  runtime: true,
+  copyright: undefined,
+  ClickShowText: undefined,
+  medium_zoom: false,
+  fancybox: true,
+  Snackbar: undefined,
+  baiduPush: false,
+  highlightCopy: false,
+  highlightLang: false,
+  highlightShrink: 'false',
+  isFontAwesomeV5: false,
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+  
+}</script><script>var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isSidebar: true  
+  }</script><noscript><style>
+#page-header {
+  opacity: 1
+}
+.justified-gallery img{
+  opacity: 1
+}
+</style></noscript><meta name="generator" content="Hexo 4.2.0"></head><body><canvas class="fireworks"></canvas><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="avatar-img" src="../img/5.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="mobile_post_data"><div class="mobile_data_item is-center"><div class="mobile_data_link"><a href="../archives/"><div class="headline">文章</div><div class="length_num">13</div></a></div></div><div class="mobile_data_item is-center">      <div class="mobile_data_link"><a href="../tags/"><div class="headline">标签</div><div class="length_num">16</div></a></div></div><div class="mobile_data_item is-center">     <div class="mobile_data_link"><a href="../categories/"><div class="headline">分类</div><div class="length_num">9</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="index.html"><i class="fa-fw fa fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/music/"><i class="fa-fw fa fa-music"></i><span> 音乐</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-heart"></i><span> 关于</span></a></div></div></div></div><i class="fa fa-arrow-right on" id="toggle-sidebar" aria-hidden="true">     </i><div id="sidebar"><div class="sidebar-toc"><div class="sidebar-toc__title">目录</div><div class="sidebar-toc__progress"><span class="progress-notice">你已经读了</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar">     </div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#python标准异常"><span class="toc-number">1.</span> <span class="toc-text">python标准异常</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#1-异常类型"><span class="toc-number">2.</span> <span class="toc-text">1 异常类型</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1-Python内置异常"><span class="toc-number">2.1.</span> <span class="toc-text">1.1 Python内置异常</span></a></li></ol></li></ol></div></div></div><div id="body-wrap"><div class="post-bg" id="nav" style="background-image: url(../../../../%EF%BC%88%E9%99%A4%E9%9D%9E%E7%89%B9%E5%AE%9A%E9%9C%80%E8%A6%81%EF%BC%8C%E5%8F%AF%E4%BB%A5%E4%B8%8D%E5%86%99%EF%BC%89)"><div id="page-header"><span class="pull_left" id="blog_name"><a class="blog_title" id="site-name" href="../index.html">哈哈哈</a></span><span class="pull_right menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="index.html"><i class="fa-fw fa fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/music/"><i class="fa-fw fa fa-music"></i><span> 音乐</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-heart"></i><span> 关于</span></a></div></div><span class="toggle-menu close"><a class="site-page"><i class="fa fa-bars fa-fw" aria-hidden="true"></i></a></span></span></div><div id="post-info"><div id="post-title"><div class="posttitle">python-异常处理</div></div><div id="post-meta"><div class="meta-firstline"><time class="post-meta__date"><span class="post-meta__date-created" title="发表于 2020-06-01 10:04:45"><i class="fa fa-calendar" aria-hidden="true"></i> 发表于 2020-06-01</span><span class="post-meta__separator">|</span><span class="post-meta__date-updated" title="更新于 2020-06-02 16:40:52"><i class="fa fa-history" aria-hidden="true"></i> 更新于 2020-06-02</span></time><span class="post-meta__categories"><span class="post-meta__separator">|</span><i class="fa fa-inbox post-meta__icon" aria-hidden="true"></i><a class="post-meta__categories" href="../../../../categories/%E6%B5%8B%E8%AF%95/">测试</a></span></div><div class="meta-secondline"> </div><div class="meta-thirdline"><span class="post-meta-pv-cv"><i class="fa fa-eye post-meta__icon" aria-hidden="true"> </i><span>阅读量:</span><span id="busuanzi_value_page_pv"></span></span><span class="post-meta-commentcount"></span></div></div></div></div><main class="layout_post" id="content-inner"><article id="post"><div class="post-content" id="article-container"><h1 id="python标准异常"><a href="#python标准异常" class="headerlink" title="python标准异常"></a>python标准异常</h1><table>
+<thead>
+<tr>
+<th align="left">异常名称</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">BaseException</td>
+<td align="left">所有异常的基类</td>
+</tr>
+<tr>
+<td align="left">SystemExit</td>
+<td align="left">解释器请求退出</td>
+</tr>
+<tr>
+<td align="left">KeyboardInterrupt</td>
+<td align="left">用户中断执行(通常是输入^C)</td>
+</tr>
+<tr>
+<td align="left">Exception</td>
+<td align="left">常规错误的基类</td>
+</tr>
+<tr>
+<td align="left">StopIteration</td>
+<td align="left">迭代器没有更多的值</td>
+</tr>
+<tr>
+<td align="left">GeneratorExit</td>
+<td align="left">生成器(generator)发生异常来通知退出</td>
+</tr>
+<tr>
+<td align="left">StandardError</td>
+<td align="left">所有的内建标准异常的基类</td>
+</tr>
+<tr>
+<td align="left">ArithmeticError</td>
+<td align="left">所有数值计算错误的基类</td>
+</tr>
+<tr>
+<td align="left">FloatingPointError</td>
+<td align="left">浮点计算错误</td>
+</tr>
+<tr>
+<td align="left">OverflowError</td>
+<td align="left">数值运算超出最大限制</td>
+</tr>
+<tr>
+<td align="left">ZeroDivisionError</td>
+<td align="left">除(或取模)零 (所有数据类型)</td>
+</tr>
+<tr>
+<td align="left">AssertionError</td>
+<td align="left">断言语句失败</td>
+</tr>
+<tr>
+<td align="left">AttributeError</td>
+<td align="left">对象没有这个属性</td>
+</tr>
+<tr>
+<td align="left">EOFError</td>
+<td align="left">没有内建输入,到达EOF 标记</td>
+</tr>
+<tr>
+<td align="left">EnvironmentError</td>
+<td align="left">操作系统错误的基类</td>
+</tr>
+<tr>
+<td align="left">IOError</td>
+<td align="left">输入/输出操作失败</td>
+</tr>
+<tr>
+<td align="left">OSError</td>
+<td align="left">操作系统错误</td>
+</tr>
+<tr>
+<td align="left">WindowsError</td>
+<td align="left">系统调用失败</td>
+</tr>
+<tr>
+<td align="left">ImportError</td>
+<td align="left">导入模块/对象失败</td>
+</tr>
+<tr>
+<td align="left">LookupError</td>
+<td align="left">无效数据查询的基类</td>
+</tr>
+<tr>
+<td align="left">IndexError</td>
+<td align="left">序列中没有此索引(index)</td>
+</tr>
+<tr>
+<td align="left">KeyError</td>
+<td align="left">映射中没有这个键</td>
+</tr>
+<tr>
+<td align="left">MemoryError</td>
+<td align="left">内存溢出错误(对于Python 解释器不是致命的)</td>
+</tr>
+<tr>
+<td align="left">NameError</td>
+<td align="left">未声明/初始化对象 (没有属性)</td>
+</tr>
+<tr>
+<td align="left">UnboundLocalError</td>
+<td align="left">访问未初始化的本地变量</td>
+</tr>
+<tr>
+<td align="left">ReferenceError</td>
+<td align="left">弱引用(Weak reference)试图访问已经垃圾回收了的对象</td>
+</tr>
+<tr>
+<td align="left">RuntimeError</td>
+<td align="left">一般的运行时错误</td>
+</tr>
+<tr>
+<td align="left">NotImplementedError</td>
+<td align="left">尚未实现的方法</td>
+</tr>
+<tr>
+<td align="left">SyntaxError</td>
+<td align="left">Python 语法错误</td>
+</tr>
+<tr>
+<td align="left">IndentationError</td>
+<td align="left">缩进错误</td>
+</tr>
+<tr>
+<td align="left">TabError</td>
+<td align="left">Tab 和空格混用</td>
+</tr>
+<tr>
+<td align="left">SystemError</td>
+<td align="left">一般的解释器系统错误</td>
+</tr>
+<tr>
+<td align="left">TypeError</td>
+<td align="left">对类型无效的操作</td>
+</tr>
+<tr>
+<td align="left">ValueError</td>
+<td align="left">传入无效的参数</td>
+</tr>
+<tr>
+<td align="left">UnicodeError</td>
+<td align="left">Unicode 相关的错误</td>
+</tr>
+<tr>
+<td align="left">UnicodeDecodeError</td>
+<td align="left">Unicode 解码时的错误</td>
+</tr>
+<tr>
+<td align="left">UnicodeEncodeError</td>
+<td align="left">Unicode 编码时错误</td>
+</tr>
+<tr>
+<td align="left">UnicodeTranslateError</td>
+<td align="left">Unicode 转换时错误</td>
+</tr>
+<tr>
+<td align="left">Warning</td>
+<td align="left">警告的基类</td>
+</tr>
+<tr>
+<td align="left">DeprecationWarning</td>
+<td align="left">关于被弃用的特征的警告</td>
+</tr>
+<tr>
+<td align="left">FutureWarning</td>
+<td align="left">关于构造将来语义会有改变的警告</td>
+</tr>
+<tr>
+<td align="left">OverflowWarning</td>
+<td align="left">旧的关于自动提升为长整型(long)的警告</td>
+</tr>
+<tr>
+<td align="left">PendingDeprecationWarning</td>
+<td align="left">关于特性将会被废弃的警告</td>
+</tr>
+<tr>
+<td align="left">RuntimeWarning</td>
+<td align="left">可疑的运行时行为(runtime behavior)的警告</td>
+</tr>
+<tr>
+<td align="left">SyntaxWarning</td>
+<td align="left">可疑的语法的警告</td>
+</tr>
+<tr>
+<td align="left">UserWarning</td>
+<td align="left">用户代码生成的警告</td>
+</tr>
+</tbody></table>
+<h1 id="1-异常类型"><a href="#1-异常类型" class="headerlink" title="1 异常类型"></a>1 异常类型</h1><h2 id="1-1-Python内置异常"><a href="#1-1-Python内置异常" class="headerlink" title="1.1 Python内置异常"></a>1.1 Python内置异常</h2><p>Python的异常处理能力是很强大的，它有很多内置异常，可向用户准确反馈出错信息。在Python中，异常也是对象，可对它进行操作。BaseException是所有内置异常的基类，但用户定义的类并不直接继承BaseException，所有的异常类都是从Exception继承，且都在exceptions模块中定义。Python自动将所有异常名称放在内建命名空间中，所以程序不必导入exceptions模块即可使用异常。一旦引发而且没有捕捉SystemExit异常，程序执行就会终止。如果交互式会话遇到一个未被捕捉的SystemExit异常，会话就会终止。<br>内置异常类的层次结构如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line">BaseException  # 所有异常的基类</span><br><span class="line"> +-- SystemExit  # 解释器请求退出</span><br><span class="line"> +-- KeyboardInterrupt  # 用户中断执行(通常是输入^C)</span><br><span class="line"> +-- GeneratorExit  # 生成器(generator)发生异常来通知退出</span><br><span class="line"> +-- Exception  # 常规异常的基类</span><br><span class="line">      +-- StopIteration  # 迭代器没有更多的值</span><br><span class="line">      +-- StopAsyncIteration  # 必须通过异步迭代器对象的__anext__()方法引发以停止迭代</span><br><span class="line">      +-- ArithmeticError  # 各种算术错误引发的内置异常的基类</span><br><span class="line">      |    +-- FloatingPointError  # 浮点计算错误</span><br><span class="line">      |    +-- OverflowError  # 数值运算结果太大无法表示</span><br><span class="line">      |    +-- ZeroDivisionError  # 除(或取模)零 (所有数据类型)</span><br><span class="line">      +-- AssertionError  # 当assert语句失败时引发</span><br><span class="line">      +-- AttributeError  # 属性引用或赋值失败</span><br><span class="line">      +-- BufferError  # 无法执行与缓冲区相关的操作时引发</span><br><span class="line">      +-- EOFError  # 当input()函数在没有读取任何数据的情况下达到文件结束条件(EOF)时引发</span><br><span class="line">      +-- ImportError  # 导入模块&#x2F;对象失败</span><br><span class="line">      |    +-- ModuleNotFoundError  # 无法找到模块或在在sys.modules中找到None</span><br><span class="line">      +-- LookupError  # 映射或序列上使用的键或索引无效时引发的异常的基类</span><br><span class="line">      |    +-- IndexError  # 序列中没有此索引(index)</span><br><span class="line">      |    +-- KeyError  # 映射中没有这个键</span><br><span class="line">      +-- MemoryError  # 内存溢出错误(对于Python 解释器不是致命的)</span><br><span class="line">      +-- NameError  # 未声明&#x2F;初始化对象 (没有属性)</span><br><span class="line">      |    +-- UnboundLocalError  # 访问未初始化的本地变量</span><br><span class="line">      +-- OSError  # 操作系统错误，EnvironmentError，IOError，WindowsError，socket.error，select.error和mmap.error已合并到OSError中，构造函数可能返回子类</span><br><span class="line">      |    +-- BlockingIOError  # 操作将阻塞对象(e.g. socket)设置为非阻塞操作</span><br><span class="line">      |    +-- ChildProcessError  # 在子进程上的操作失败</span><br><span class="line">      |    +-- ConnectionError  # 与连接相关的异常的基类</span><br><span class="line">      |    |    +-- BrokenPipeError  # 另一端关闭时尝试写入管道或试图在已关闭写入的套接字上写入</span><br><span class="line">      |    |    +-- ConnectionAbortedError  # 连接尝试被对等方中止</span><br><span class="line">      |    |    +-- ConnectionRefusedError  # 连接尝试被对等方拒绝</span><br><span class="line">      |    |    +-- ConnectionResetError    # 连接由对等方重置</span><br><span class="line">      |    +-- FileExistsError  # 创建已存在的文件或目录</span><br><span class="line">      |    +-- FileNotFoundError  # 请求不存在的文件或目录</span><br><span class="line">      |    +-- InterruptedError  # 系统调用被输入信号中断</span><br><span class="line">      |    +-- IsADirectoryError  # 在目录上请求文件操作(例如 os.remove())</span><br><span class="line">      |    +-- NotADirectoryError  # 在不是目录的事物上请求目录操作(例如 os.listdir())</span><br><span class="line">      |    +-- PermissionError  # 尝试在没有足够访问权限的情况下运行操作</span><br><span class="line">      |    +-- ProcessLookupError  # 给定进程不存在</span><br><span class="line">      |    +-- TimeoutError  # 系统函数在系统级别超时</span><br><span class="line">      +-- ReferenceError  # weakref.proxy()函数创建的弱引用试图访问已经垃圾回收了的对象</span><br><span class="line">      +-- RuntimeError  # 在检测到不属于任何其他类别的错误时触发</span><br><span class="line">      |    +-- NotImplementedError  # 在用户定义的基类中，抽象方法要求派生类重写该方法或者正在开发的类指示仍然需要添加实际实现</span><br><span class="line">      |    +-- RecursionError  # 解释器检测到超出最大递归深度</span><br><span class="line">      +-- SyntaxError  # Python 语法错误</span><br><span class="line">      |    +-- IndentationError  # 缩进错误</span><br><span class="line">      |         +-- TabError  # Tab和空格混用</span><br><span class="line">      +-- SystemError  # 解释器发现内部错误</span><br><span class="line">      +-- TypeError  # 操作或函数应用于不适当类型的对象</span><br><span class="line">      +-- ValueError  # 操作或函数接收到具有正确类型但值不合适的参数</span><br><span class="line">      |    +-- UnicodeError  # 发生与Unicode相关的编码或解码错误</span><br><span class="line">      |         +-- UnicodeDecodeError  # Unicode解码错误</span><br><span class="line">      |         +-- UnicodeEncodeError  # Unicode编码错误</span><br><span class="line">      |         +-- UnicodeTranslateError  # Unicode转码错误</span><br><span class="line">      +-- Warning  # 警告的基类</span><br><span class="line">           +-- DeprecationWarning  # 有关已弃用功能的警告的基类</span><br><span class="line">           +-- PendingDeprecationWarning  # 有关不推荐使用功能的警告的基类</span><br><span class="line">           +-- RuntimeWarning  # 有关可疑的运行时行为的警告的基类</span><br><span class="line">           +-- SyntaxWarning  # 关于可疑语法警告的基类</span><br><span class="line">           +-- UserWarning  # 用户代码生成警告的基类</span><br><span class="line">           +-- FutureWarning  # 有关已弃用功能的警告的基类</span><br><span class="line">           +-- ImportWarning  # 关于模块导入时可能出错的警告的基类</span><br><span class="line">           +-- UnicodeWarning  # 与Unicode相关的警告的基类</span><br><span class="line">           +-- BytesWarning  # 与bytes和bytearray相关的警告的基类</span><br><span class="line">           +-- ResourceWarning  # 与资源使用相关的警告的基类。被默认警告过滤器忽略。</span><br></pre></td></tr></table></figure>
+
+<p>1.2 requests模块的相关异常<br>在做爬虫时，requests是一个十分好用的模块，所以我们在这里专门探讨一下requests模块相关的异常。</p>
+<p>要调用requests模块的内置异常，只要“from requests.exceptions import xxx”就可以了，比如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">from requests.exceptions import ConnectionError, ReadTimeout</span><br></pre></td></tr></table></figure>
+
+<p>或者直接这样也是可以的：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">from requests import ConnectionError, ReadTimeout</span><br></pre></td></tr></table></figure>
+
+<p>requests模块内置异常类的层次结构如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">IOError</span><br><span class="line"> +-- RequestException  # 处理不确定的异常请求</span><br><span class="line">      +-- HTTPError  # HTTP错误</span><br><span class="line">      +-- ConnectionError  # 连接错误</span><br><span class="line">      |    +-- ProxyError  # 代理错误</span><br><span class="line">      |    +-- SSLError  # SSL错误</span><br><span class="line">      |    +-- ConnectTimeout(+-- Timeout)  # (双重继承，下同)尝试连接到远程服务器时请求超时，产生此错误的请求可以安全地重试。</span><br><span class="line">      +-- Timeout  # 请求超时</span><br><span class="line">      |    +-- ReadTimeout  # 服务器未在指定的时间内发送任何数据</span><br><span class="line">      +-- URLRequired  # 发出请求需要有效的URL</span><br><span class="line">      +-- TooManyRedirects  # 重定向太多</span><br><span class="line">      +-- MissingSchema(+-- ValueError) # 缺少URL架构(例如http或https)</span><br><span class="line">      +-- InvalidSchema(+-- ValueError) # 无效的架构，有效架构请参见defaults.py</span><br><span class="line">      +-- InvalidURL(+-- ValueError)  # 无效的URL</span><br><span class="line">      |    +-- InvalidProxyURL  # 无效的代理URL</span><br><span class="line">      +-- InvalidHeader(+-- ValueError)  # 无效的Header</span><br><span class="line">      +-- ChunkedEncodingError  # 服务器声明了chunked编码但发送了一个无效的chunk</span><br><span class="line">      +-- ContentDecodingError(+-- BaseHTTPError)  # 无法解码响应内容</span><br><span class="line">      +-- StreamConsumedError(+-- TypeError)  # 此响应的内容已被使用</span><br><span class="line">      +-- RetryError  # 自定义重试逻辑失败</span><br><span class="line">      +-- UnrewindableBodyError  # 尝试倒回正文时，请求遇到错误</span><br><span class="line">      +-- FileModeWarning(+-- DeprecationWarning)  # 文件以文本模式打开，但Requests确定其二进制长度</span><br><span class="line">      +-- RequestsDependencyWarning  # 导入的依赖项与预期的版本范围不匹配</span><br><span class="line"> </span><br><span class="line">Warning</span><br><span class="line"> +-- RequestsWarning  # 请求的基本警告</span><br></pre></td></tr></table></figure>
+
+<p>python内置了一个ConnectionError异常，这里可以不用再从requests模块import了：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">import requests</span><br><span class="line">from requests import ReadTimeout</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line">def get_page(url):</span><br><span class="line">	try:</span><br><span class="line">		response &#x3D; requests.get(url, timeout&#x3D;1)</span><br><span class="line">		if response.status_code &#x3D;&#x3D; 200:</span><br><span class="line">			return response.text</span><br><span class="line">		else:</span><br><span class="line">			print(&#39;Get Page Failed&#39;, response.status_code)</span><br><span class="line">			return None</span><br><span class="line">	except (ConnectionError, ReadTimeout):</span><br><span class="line">		print(&#39;Crawling Failed&#39;, url)</span><br><span class="line">		return None</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line">def main():</span><br><span class="line">	url &#x3D; &#39;https:&#x2F;&#x2F;www.baidu.com&#39;</span><br><span class="line">	print(get_page(url))</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line">if __name__ &#x3D;&#x3D; &#39;__main__&#39;:</span><br><span class="line">	main()</span><br></pre></td></tr></table></figure>
+
+<p>1.3 用户自定义异常<br>此外，你也可以通过创建一个新的异常类拥有自己的异常，异常应该是通过直接或间接的方式继承自Exception类。下面创建了一个MyError类，基类为Exception，用于在异常触发时输出更多的信息。</p>
+<p>在try语句块中，抛出用户自定义的异常后执行except部分，变量 e 是用于创建MyError类的实例。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">class MyError(Exception):</span><br><span class="line">	def __init__(self, msg):</span><br><span class="line">		self.msg &#x3D; msg</span><br><span class="line">	</span><br><span class="line">	def __str__(self):</span><br><span class="line">		return self.msg</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line">try:</span><br><span class="line">	raise MyError(&#39;类型错误&#39;)</span><br><span class="line">except MyError as e:</span><br><span class="line">	print(&#39;My exception occurred&#39;, e.msg)</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>异常捕获<br>当发生异常时，我们就需要对异常进行捕获，然后进行相应的处理。python的异常捕获常用try…except…结构，把可能发生错误的语句放在try模块里，用except来处理异常，每一个try，都必须至少对应一个except。此外，与python异常相关的关键字主要有：</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>关键字</th>
+<th>关键字说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>try/except</td>
+<td>捕获异常并处理</td>
+</tr>
+<tr>
+<td>pass</td>
+<td>忽略异常</td>
+</tr>
+<tr>
+<td>as</td>
+<td>定义异常实例（except MyError as e）</td>
+</tr>
+<tr>
+<td>else</td>
+<td>如果try中的语句没有引发异常，则执行else中的语句</td>
+</tr>
+<tr>
+<td>finally</td>
+<td>无论是否出现异常，都执行的代码</td>
+</tr>
+<tr>
+<td>raise</td>
+<td>抛出/引发异常</td>
+</tr>
+</tbody></table>
+<p>异常捕获有很多方式，下面分别进行讨论。</p>
+<p>2.1 捕获所有异常<br>包括键盘中断和程序退出请求（用sys.exit()就无法退出程序了，因为异常被捕获了），因此慎用。</p>
+<pre><code>try:
+     &lt;语句&gt;
+
+except:
+
+print(&apos;异常说明&apos;)</code></pre><p>2.2 捕获指定异常</p>
+<pre><code> try:
+     &lt;语句&gt;
+
+except &lt;异常名&gt;: 
+
+  print(&apos;异常说明&apos;)</code></pre><p>万能异常：</p>
+<pre><code> try:
+     &lt;语句&gt;
+
+except Exception:
+
+ print(&apos;异常说明&apos;)</code></pre><p>一个例子：</p>
+<pre><code>try:
+    f = open(&quot;file-not-exists&quot;, &quot;r&quot;)
+
+except IOError as e:
+
+print(&quot;open exception: %s: %s&quot; %(e.errno, e.strerror))</code></pre><p>2.3 捕获多个异常<br>捕获多个异常有两种方式，第一种是一个except同时处理多个异常，不区分优先级：</p>
+<pre><code>  try:
+     &lt;语句&gt;
+
+except (&lt;异常名1&gt;, &lt;异常名2&gt;, ...):
+  print(&apos;异常说明&apos;)</code></pre><p>第二种是区分优先级的：</p>
+<pre><code> try:
+     &lt;语句&gt;
+
+except &lt;异常名1&gt;:
+ print(&apos;异常说明1&apos;)
+except &lt;异常名2&gt;:
+ print(&apos;异常说明2&apos;)
+except &lt;异常名3&gt;:
+ print(&apos;异常说明3&apos;)</code></pre><p>该种异常处理语法的规则是：</p>
+<p>执行try下的语句，如果引发异常，则执行过程会跳到第一个except语句。<br>如果第一个except中定义的异常与引发的异常匹配，则执行该except中的语句。<br>如果引发的异常不匹配第一个except，则会搜索第二个except，允许编写的except数量没有限制。<br>如果所有的except都不匹配，则异常会传递到下一个调用本代码的最高层try代码中。<br>2.4 异常中的else<br>如果判断完没有某些异常之后还想做其他事，就可以使用下面这样的else语句。</p>
+<pre><code>  try:
+     &lt;语句&gt;
+
+except &lt;异常名1&gt;:
+  print(&apos;异常说明1&apos;)
+except &lt;异常名2&gt;:
+  print(&apos;异常说明2&apos;)
+else:
+    &lt;语句&gt;  # try语句中没有异常则执行此段代码</code></pre><p>2.5 异常中的finally</p>
+<pre><code> try...finally...语句无论是否发生异常都将会执行最后的代码。
+
+try:
+     &lt;语句&gt;
+
+finally:
+ &lt;语句&gt;</code></pre><p>看一个示例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">str1 &#x3D; &#39;hello world&#39;</span><br><span class="line">try:</span><br><span class="line">    int(str1)</span><br><span class="line">except IndexError as e:</span><br><span class="line">    print(e)</span><br><span class="line">except KeyError as e:</span><br><span class="line">    print(e)</span><br><span class="line">except ValueError as e:</span><br><span class="line">    print(e)</span><br><span class="line">else:</span><br><span class="line">    print(&#39;try内没有异常&#39;)</span><br><span class="line">finally:</span><br><span class="line">    print(&#39;无论异常与否,都会执行我&#39;)</span><br></pre></td></tr></table></figure>
+
+<p>2.6 raise主动触发异常<br>可以使用raise语句自己触发异常，raise语法格式如下：</p>
+<p>raise [Exception [, args [, traceback]]]<br>语句中Exception是异常的类型（例如ValueError），参数是一个异常参数值。该参数是可选的，如果不提供，异常的参数是”None”。最后一个参数是跟踪异常对象，也是可选的（在实践中很少使用）。</p>
+<p>看一个例子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">def not_zero(num):</span><br><span class="line">    try:</span><br><span class="line">        if num &#x3D;&#x3D; 0:</span><br><span class="line">            raise ValueError(&#39;参数错误&#39;)</span><br><span class="line">        return num</span><br><span class="line">    except Exception as e:</span><br><span class="line">        print(e)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">not_zero(0)</span><br></pre></td></tr></table></figure>
+
+<p>2.7 采用traceback模块查看异常<br>发生异常时，Python能“记住”引发的异常以及程序的当前状态。Python还维护着traceback（跟踪）对象，其中含有异常发生时与函数调用堆栈有关的信息。记住，异常可能在一系列嵌套较深的函数调用中引发。程序调用每个函数时，Python会在“函数调用堆栈”的起始处插入函数名。一旦异常被引发，Python会搜索一个相应的异常处理程序。如果当前函数中没有异常处理程序，当前函数会终止执行，Python会搜索当前函数的调用函数，并以此类推，直到发现匹配的异常处理程序，或者Python抵达主程序为止。这一查找合适的异常处理程序的过程就称为“堆栈辗转开解”（StackUnwinding）。解释器一方面维护着与放置堆栈中的函数有关的信息，另一方面也维护着与已从堆栈中“辗转开解”的函数有关的信息。</p>
+<p>格式如下：</p>
+<pre><code>try:
+    block
+
+except:
+traceback.print_exc()</code></pre><p>举个栗子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">try:</span><br><span class="line">    1&#x2F;0</span><br><span class="line">except Exception as e:</span><br><span class="line">    print(e)</span><br></pre></td></tr></table></figure>
+
+<p>如果我们这样写的话，程序只会报“division by zero”错误，但是我们并不知道是在哪个文件哪个函数哪一行出的错。</p>
+<p>下面使用traceback模块，</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">import traceback</span><br><span class="line"></span><br><span class="line">try:</span><br><span class="line">    1&#x2F;0</span><br><span class="line">except Exception as e:</span><br><span class="line">    traceback.print_exc()</span><br></pre></td></tr></table></figure>
+
+<p>这样就会帮我们追溯到出错点：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Traceback (most recent call last):</span><br><span class="line">  File &quot;E:&#x2F;PycharmProjects&#x2F;ProxyPool-master&#x2F;proxypool&#x2F;test.py&quot;, line 4, in &lt;module&gt;</span><br><span class="line">    1&#x2F;0</span><br><span class="line">ZeroDivisionError: division by zero</span><br></pre></td></tr></table></figure>
+
+<p>另外，traceback.print_exc()跟traceback.format_exc()有什么区别呢？</p>
+<p>区别就是，format_exc()返回字符串，print_exc()则直接给打印出来。即traceback.print_exc()与print(traceback.format_exc())效果是一样的。print_exc()还可以接受file参数直接写入到一个文件。比如可以像下面这样把相关信息写入到tb.txt文件去。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">traceback.print_exc(file&#x3D;open(&#39;tb.txt&#39;,&#39;w+&#39;))</span><br></pre></td></tr></table></figure>
+
+</div><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">yali</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="../../../../http:/yoursite.com/2020/06/01/python-%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/">http://yoursite.com/2020/06/01/python-%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://yoursite.com" target="_blank">哈哈哈</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="../../../../tags/demo1/">demo1</a><a class="post-meta__tags" href="../../../../tags/demo2/">demo2</a></div><div class="post_share"><div class="social-share" data-image="../../../../https:/ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=3668607579,886597139&amp;fm=26&amp;gp=0.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="../../../../https:/cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"/><script src="../../../../https:/cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js"></script></div></div><div class="post-reward"><a class="reward-button button--primary button--animated"> <i class="fa fa-qrcode"></i> 打赏<div class="reward-main"><ul class="reward-all"><li class="reward-item"><img class="post-qr-code__img" src="../../../../img/weixin.jpg" alt="微信"/><div class="post-qr-code__desc">微信</div></li><li class="reward-item"><img class="post-qr-code__img" src="../../../../img/zhifubao.jpg" alt="支付宝"/><div class="post-qr-code__desc">支付宝</div></li></ul></div></a></div><nav class="pagination_post" id="pagination"><div class="next-post pull-full"><a href="../python-%E8%AE%BF%E9%97%AE%E6%96%87%E4%BB%B6/"><img class="next_cover" src="../../../../http:/img4.imgtn.bdimg.com/it/u=3766416719,1302461499&amp;fm=26&amp;gp=0.jpg" onerror="onerror=null;src='../../../../img/404.jpg'"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">python 访问文件</div></div></a></div></nav><div class="relatedPosts"><div class="relatedPosts_headline"><i class="fa fa-fw fa-thumbs-up" aria-hidden="true"></i><span> 相关推荐</span></div><div class="relatedPosts_list"><div class="relatedPosts_item"><a href="/2020/06/01/python-访问文件/" title="python 访问文件"><img class="relatedPosts_cover" src="http://img4.imgtn.bdimg.com/it/u=3766416719,1302461499&fm=26&gp=0.jpg"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i> 2020-06-01</div><div class="relatedPosts_title">python 访问文件</div></div></a></div></div><div class="clear_both"></div></div></article></main><footer id="footer" data-type="color"><div id="footer-wrap"><div class="copyright">&copy;2020 By yali</div><div class="framework-info"><span>驱动 </span><a href="https://hexo.io" target="_blank" rel="noopener"><span>Hexo</span></a><span class="footer-separator">|</span><span>主题 </span><a href="https://github.com/jerryc127/hexo-theme-butterfly" target="_blank" rel="noopener"><span>Butterfly</span></a></div></div></footer></div><section class="rightside" id="rightside"><div id="rightside-config-hide"><i class="fa fa-book" id="readmode" title="阅读模式"></i><i class="fa fa-plus" id="font_plus" title="放大字体"></i><i class="fa fa-minus" id="font_minus" title="缩小字体"></i><a class="translate_chn_to_cht" id="translateLink" href="javascript:translatePage();" title="简繁转换" target="_self">繁</a><i class="darkmode fa fa-moon-o" id="darkmode" title="夜间模式"></i></div><div id="rightside-config-show"><div id="rightside_config" title="设置"><i class="fa fa-cog" aria-hidden="true"></i></div><i class="fa fa-list-ul close" id="mobile-toc-button" title="目录" aria-hidden="true"></i><i class="fa fa-arrow-up" id="go-up" title="回到顶部" aria-hidden="true"></i></div></section><script src="../../../../https:/cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="../../../../js/utils.js"></script><script src="../../../../js/main.js"></script><script src="../../../../js/tw_cn.js"></script><script src="../../../../https:/cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="../../../../https:/cdn.jsdelivr.net/npm/animejs@latest/anime.min.js"></script><script src="../../../../js/third-party/fireworks.js"></script><script id="ribbon_piao" mobile="false" src="../../../../js/third-party/piao.js"></script><script async src="../../../../busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script src="../../../../https:/cdn.jsdelivr.net/npm/instant.page@latest/instantpage.min.js" type="module"></script></body></html>
